@@ -14,7 +14,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* 1. INTRO SPLASH - 3 HERË MË E MADHE */
+        /* 1. INTRO SPLASH - LOGOJA E MADHE */
         #intro-splash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #000;
@@ -23,7 +23,7 @@
         }
 
         .logo-anim {
-            width: 550px; /* Zmadhuar 3 herë */
+            width: 550px; 
             max-width: 90%; 
             height: auto;
             opacity: 0;
@@ -57,9 +57,9 @@
         /* 3. HOME CONTENT */
         #home-content { opacity: 0; width: 100%; height: 100%; position: relative; transition: opacity 1s; z-index: 10; }
 
-        /* TITULLI TITANIK ME ANIMACION LUKSOZ */
+        /* HEADER CENTER - LOGOJA SI TITULL (PA TË ZEZA) */
         .header-center {
-            position: absolute; top: 15%; width: 100%;
+            position: absolute; top: 10%; width: 100%;
             display: flex; justify-content: center; align-items: center;
             z-index: 2000;
         }
@@ -71,34 +71,29 @@
         }
         .wing.right { background: linear-gradient(to left, transparent, #fff); }
 
-        .main-title {
-            color: #fff; 
-            font-size: clamp(40px, 8vw, 80px); /* Shumë i madh, përshtatet me ekranin */
-            font-weight: 900;
-            letter-spacing: 25px; 
-            text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        /* KODI QË HEQ TË ZEZA NGA FOTOJA DHE E BËN TITULL */
+        .main-logo-title {
+            width: 300px; /* Madhësia e logos si titull */
+            height: auto;
+            mix-blend-mode: screen; /* Ky rresht zhduk prapavijën e zezë të fotos */
+            filter: brightness(1.2);
             animation: titleGlow 4s infinite ease-in-out;
         }
 
         @keyframes titleGlow {
-            0%, 100% { opacity: 0.8; text-shadow: 0 0 20px rgba(255,255,255,0.3); transform: scale(1); }
-            50% { opacity: 1; text-shadow: 0 0 50px rgba(255,255,255,0.8); transform: scale(1.02); }
+            0%, 100% { opacity: 0.9; transform: scale(1); filter: brightness(1); }
+            50% { opacity: 1; transform: scale(1.05); filter: brightness(1.5); }
         }
 
         /* CONTACT US - DJATHTAS POSHTË */
         .contact-wrap {
-            position: absolute; 
-            bottom: 40px; 
-            right: 40px; 
-            z-index: 2000;
+            position: absolute; bottom: 40px; right: 40px; z-index: 2000;
         }
         .contact-btn {
             color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 4px;
             border: 1px solid rgba(255,255,255,0.6); padding: 12px 35px;
             text-transform: uppercase; transition: 0.4s;
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(5px);
         }
         .contact-btn:hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 20px #fff; }
 
@@ -133,7 +128,7 @@
         <div class="header-center">
             <div class="xkapo-title-wrap">
                 <div class="wing"></div>
-                <h1 class="main-title">XKAPO</h1>
+                <img src="9BA7D80D-DB0A-4D39-9C65-6FD915BCF247.jpg" class="main-logo-title" alt="XKAPO">
                 <div class="wing right"></div>
             </div>
         </div>
