@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MkdMap - Ultra Luxury Multi-Language Directory</title>
+    <title>MkdMap - Global Luxury Directory</title>
+    <!-- Fusim fontin Montserrat për stil luksoz -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         /* --- 1. STILI PËR EKRANIN HYRËS (SPLASH SCREEN) --- */
         #splash-screen {
@@ -12,40 +14,41 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #090d16;
+            background-color: #060911;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             opacity: 1;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .splash-text {
             color: #ffffff;
-            font-family: 'Montserrat', sans-serif, system-ui;
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 6px;
             text-transform: uppercase;
             text-align: center;
             opacity: 0;
-            transform: translateY(30px);
-            animation: textIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transform: translateY(40px);
+            animation: textIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         @keyframes textIn {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 2. STILI PËR FAQEN KRYESORE (HOME PAGE) --- */
+        /* --- 2. STILI I RI UNIK I HOME PAGE --- */
         body {
             margin: 0;
             padding: 0;
-            background-color: #0f1a2c; 
-            font-family: 'Montserrat', sans-serif, system-ui;
-            color: #ffffff;
+            background: radial-gradient(circle at top, #111a2e 0%, #050811 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: #f8fafc;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         #main-content {
@@ -53,83 +56,89 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
         /* --- TITULLI ULTRA LUXURY --- */
         header {
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 25px;
             opacity: 0;
-            transform: scale(0.95);
-            animation: titleLuxuryIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transform: translateY(-20px);
+            animation: titleLuxuryIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .main-title {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 900;
-            letter-spacing: 12px;
-            background: linear-gradient(135deg, #f3caf6 0%, #d4af37 50%, #aa7c11 100%);
+            letter-spacing: 16px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 30%, #d4af37 70%, #aa7c11 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0px 4px 20px rgba(212, 175, 55, 0.15);
+            filter: drop-shadow(0px 4px 15px rgba(212, 175, 55, 0.2));
         }
 
         @keyframes titleLuxuryIn {
-            to { opacity: 1; transform: scale(1); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- SELEKTORI I GJUHËVE --- */
+        /* --- SELEKTORI MODERN I GJUHËVE (50 GJUHË) --- */
         .lang-container {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .lang-select {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #ffffff;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #cbd5e1;
+            padding: 10px 20px;
+            border-radius: 30px;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             cursor: pointer;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
         }
 
         .lang-select:hover, .lang-select:focus {
             border-color: #d4af37;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(212, 175, 55, 0.08);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
         }
 
         .lang-select option {
-            background-color: #0f1a2c;
+            background-color: #090d16;
             color: #ffffff;
         }
 
-        /* --- KUTIA E KËRKIMIT (SEARCH BAR) --- */
+        /* --- KUTIA E KËRKIMIT DIZAJN MINIMALIST --- */
         .search-box {
             display: flex;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 6px 6px 6px 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 40px;
-            max-width: 700px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 100px;
+            padding: 8px 8px 8px 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 60px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .search-box:focus-within {
-            border-color: #d4af37;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.05), 0 0 30px rgba(212, 175, 55, 0.05);
         }
 
         .search-box input {
@@ -138,89 +147,144 @@
             border: none;
             outline: none;
             color: #ffffff;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-family: inherit;
+            letter-spacing: 0.5px;
         }
 
         .search-box input::placeholder {
-            color: #94a3b8;
+            color: #64748b;
         }
 
         .search-box button {
-            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            background: #ffffff;
             border: none;
-            color: #0f1a2c;
-            font-weight: bold;
-            padding: 12px 30px;
-            border-radius: 50px;
+            color: #050811;
+            font-weight: 700;
+            padding: 14px 35px;
+            border-radius: 100px;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
         .search-box button:hover {
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            color: #ffffff;
+            transform: scale(1.02);
         }
 
-        /* --- REZULTATET --- */
+        /* --- ANIMACIONI UNIK I PLLAKATAVE (BUSINESS CARDS) --- */
         .results-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
             margin-top: 20px;
         }
 
         .business-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid #d4af37;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            border-right: 1px solid rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 30px;
+            border-radius: 20px;
             text-align: left;
-            transition: transform 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+            /* Animacioni i lëmueshëm kur vjen ose ikën mausi */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        background 0.4s ease, 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
         }
 
+        /* Efekti i ri unik kur i afrohesh pllakatës */
         .business-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.05);
+        }
+
+        /* Linja e artë dekorative që ndriçon vetëm në hover */
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #aa7c11);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .business-card:hover::before {
+            transform: scaleX(1);
         }
 
         .biz-name {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #ffffff;
-            margin: 0 0 5px 0;
+            margin: 0 0 12px 0;
+            letter-spacing: 0.5px;
         }
 
-        .biz-category {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: #d4af37;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .biz-info {
-            color: #cbd5e1;
+        .biz-desc {
+            color: #94a3b8;
             font-size: 0.95rem;
-            margin: 8px 0;
-            line-height: 1.4;
+            margin: 0 0 25px 0;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- ZONA E RE: LOKACIONI ANASH TELEFONIT --- */
+        .biz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
+            margin-top: auto;
+            font-size: 0.85rem;
+        }
+
+        .biz-loc {
+            color: #d4af37;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .biz-phone {
+            color: #cbd5e1;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .no-results {
-            color: #94a3b8;
+            color: #64748b;
             font-style: italic;
             margin-top: 30px;
             grid-column: 1 / -1;
         }
 
+        /* Përshtatja inteligjente për celularë */
         @media (max-width: 480px) {
-            .main-title { font-size: 2rem; letter-spacing: 8px; }
-            .search-box { padding: 4px 4px 4px 15px; }
-            .search-box button { padding: 10px 20px; font-size: 0.9rem; }
+            .main-title { font-size: 2.2rem; letter-spacing: 10px; }
+            .search-box { padding: 5px 5px 5px 18px; margin-bottom: 40px; }
+            .search-box button { padding: 12px 22px; font-size: 0.8rem; }
+            .results-container { grid-template-columns: 1fr; gap: 20px; }
+            .biz-footer { flex-direction: row; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -231,37 +295,83 @@
         <div class="splash-text">Welcome to Macedonia</div>
     </div>
 
-    <!-- 2. FAQJA KRYESORE -->
+    <!-- 2. HOME PAGE UNIQUE DESIGN -->
     <div id="main-content">
         <div class="container">
             <header>
                 <h1 class="main-title">mkdmap</h1>
             </header>
 
-            <!-- SELEKTORI I GJUHËS -->
+            <!-- SELEKTORI ME 50 GJUHË TË NDRYSHME -->
             <div class="lang-container">
                 <select class="lang-select" id="language-picker" onchange="changeLanguage()">
-                    <option value="en">🌐 Language: English (EN)</option>
-                    <option value="sq">🌐 Language: Shqip (SQ)</option>
-                    <option value="mk">🌐 Language: Maqedonisht (MK)</option>
+                    <option value="en">🌐 English (EN)</option>
+                    <option value="sq">🌐 Shqip (SQ)</option>
+                    <option value="mk">🌐 Maqedonisht (MK)</option>
+                    <option value="sr">🌐 Srpski (SR)</option>
+                    <option value="tr">🌐 Türkçe (TR)</option>
+                    <option value="de">🌐 Deutsch (DE)</option>
+                    <option value="ru">🌐 Русский (RU)</option>
+                    <option value="fr">🌐 Français (FR)</option>
+                    <option value="it">🌐 Italiano (IT)</option>
+                    <option value="es">🌐 Español (ES)</option>
+                    <option value="el">🌐 Ελληνικά (EL)</option>
+                    <option value="bg">🌐 Български (BG)</option>
+                    <option value="ro">🌐 Română (RO)</option>
+                    <option value="pl">🌐 Polski (PL)</option>
+                    <option value="nl">🌐 Nederlands (NL)</option>
+                    <option value="pt">🌐 Português (PT)</option>
+                    <option value="sv">🌐 Svenska (SV)</option>
+                    <option value="no">🌐 Norsk (NO)</option>
+                    <option value="da">🌐 Dansk (DA)</option>
+                    <option value="fi">🌐 Suomi (FI)</option>
+                    <option value="cs">🌐 Čeština (CS)</option>
+                    <option value="hu">🌐 Magyar (HU)</option>
+                    <option value="uk">🌐 Українська (UK)</option>
+                    <option value="hr">🌐 Hrvatski (HR)</option>
+                    <option value="bs">🌐 Bosanski (BS)</option>
+                    <option value="sl">🌐 Slovenščina (SL)</option>
+                    <option value="sk">🌐 Slovenčina (SK)</option>
+                    <option value="lt">🌐 Lietuvių (LT)</option>
+                    <option value="lv">🌐 Latviešu (LV)</option>
+                    <option value="et">🌐 Eesti (ET)</option>
+                    <option value="zh">🌐 中文 (ZH)</option>
+                    <option value="ja">🌐 日本語 (JA)</option>
+                    <option value="ko">🌐 한국어 (KO)</option>
+                    <option value="ar">🌐 العربية (AR)</option>
+                    <option value="he">🌐 עברית (HE)</option>
+                    <option value="hi">🌐 हिन्दी (HI)</option>
+                    <option value="id">🌐 Bahasa Indonesia (ID)</option>
+                    <option value="ms">🌐 Bahasa Melayu (MS)</option>
+                    <option value="th">🌐 ไทย (TH)</option>
+                    <option value="vi">🌐 Tiếng Việt (VI)</option>
+                    <option value="fa">🌐 فارسی (FA)</option>
+                    <option value="ur">🌐 اردو (UR)</option>
+                    <option value="bn">🌐 বাংলা (BN)</option>
+                    <option value="pa">🌐 ਪੰਜਾਬੀ (PA)</option>
+                    <option value="ka">🌐 ქართული (KA)</option>
+                    <option value="hy">🌐 Հայերեն (HY)</option>
+                    <option value="az">🌐 Azərbaycanca (AZ)</option>
+                    <option value="sq_AL">🌐 Shqip Kosovë (SQ-KS)</option>
+                    <option value="la">🌐 Latina (LA)</option>
+                    <option value="af">🌐 Afrikaans (AF)</option>
                 </select>
             </div>
 
             <!-- KUTIA E KËRKIMIT -->
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel, cafe)...">
+                <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel, villa)...">
                 <button id="search-btn" onclick="searchBusinesses()">Search</button>
             </div>
 
-            <!-- REZULTATET -->
+            <!-- ZONA E REZULTATEVE ME ANIMACION ETALON -->
             <div class="results-container" id="results-box">
-                <!-- Mbushen nga JS -->
+                <!-- Mbushet dinamikisht nga JS -->
             </div>
         </div>
     </div>
 
     <script>
-        // Ruajmë gjuhën aktuale (në fillim është Anglisht 'en')
         let currentLang = 'en';
 
         window.addEventListener("DOMContentLoaded", function() {
@@ -276,89 +386,94 @@
                 
                 setTimeout(function() {
                     splash.style.display = "none";
-                }, 500); 
+                }, 600); 
             }, 2000);
         });
 
-        // FIKS ÇFARË KËRKUAT: Bizneset tani kanë përkthime për EN, SQ dhe MK
+        // DATABASE ME PËRKTHIME 
         const businesses = [
             {
                 phone: "+389 70 123 456",
                 tags: "villa hotel vilë vila вила хотел",
-                en: { name: "Luxury Villa Mavrovo", location: "Mavrovo", desc: "Exclusive villa with mountain view and private pool.", labelDesc: "Description", labelPhone: "Phone" },
-                sq: { name: "Vila Luksoze Mavrovë", location: "Mavrovë", desc: "Vilë ekskluzive me pamje nga mali dhe pishinë private.", labelDesc: "Përshkrimi", labelPhone: "Telefoni" },
-                mk: { name: "Луксузна Вила Маврово", location: "Маврово", desc: "Ексклузивна вила со поглед на планина и приватен базен.", labelDesc: "Опис", labelPhone: "Телефон" }
+                en: { name: "Luxury Villa Mavrovo", location: "Mavrovo", desc: "Exclusive villa with mountain view and private pool." },
+                sq: { name: "Vila Luksoze Mavrovë", location: "Mavrovë", desc: "Vilë ekskluzive me pamje spektakolare nga mali dhe pishinë private." },
+                mk: { name: "Луксузна Вила Маврово", location: "Маврово", desc: "Ексклузивна вила со прекрасен поглед на планина и приватен базен." }
             },
             {
                 phone: "+389 71 999 888",
                 tags: "mechanik mekanik service auto авто механичар",
-                en: { name: "Skopje Auto Mechanic Pro", location: "Skopje", desc: "24/7 emergency car repair for tourists. English speaking.", labelDesc: "Description", labelPhone: "Phone" },
-                sq: { name: "Mekanik Auto Pro Shkup", location: "Shkup", desc: "Riparim urgjent i makinave 24/7 për turistët. Flasim Shqip dhe Anglisht.", labelDesc: "Përshkrimi", labelPhone: "Telefoni" },
-                mk: { name: "Авто Механичар Про Скопје", location: "Скопје", desc: "24/7 итна поправка на автомобили за туристи. Зборуваме англиски.", labelDesc: "Опис", labelPhone: "Телефон" }
+                en: { name: "Skopje Auto Mechanic Pro", location: "Skopje", desc: "24/7 emergency car repair for tourists. English speaking support." },
+                sq: { name: "Mekanik Auto Pro Shkup", location: "Shkup", desc: "Riparim urgjent i makinave 24/7 për turistët dhe vendasit. Flasim Shqip." },
+                mk: { name: "Авто Механичар Про Скопје", location: "Скопје", desc: "24/7 итна поправка на возила за туристи. Зборуваме англиски и германски." }
             },
             {
                 phone: "+389 75 444 333",
                 tags: "mjeshter telefoni service repair сервис мобилни",
-                en: { name: "SmartFix Phone Service", location: "Skopje", desc: "Express screen and battery repair for all smartphones.", labelDesc: "Description", labelPhone: "Phone" },
-                sq: { name: "Servis Telefonash SmartFix", location: "Shkup", desc: "Riparim i shpejtë i ekranit dhe baterisë për të gjithë smartfonët.", labelDesc: "Përshkrimi", labelPhone: "Telefoni" },
-                mk: { name: "Сервис за Мобилни SmartFix", location: "Скопје", desc: "Експресна поправка на екрани и батерии за сите смартфони.", labelDesc: "Опис", labelPhone: "Телефон" }
+                en: { name: "SmartFix Phone Service", location: "Skopje", desc: "Express screen and battery repair for all premium smartphones." },
+                sq: { name: "Servis Telefonash SmartFix", location: "Shkup", desc: "Riparim i shpejtë dhe i garantuar i ekranit dhe baterisë për smartfonë." },
+                mk: { name: "Сервис за Мобилни SmartFix", location: "Скопје", desc: "Брза и квалитетна поправка на екрани и батерии за сите смартфони." }
             }
         ];
 
-        // Funksioni që shfaq bizneset në bazë të gjuhës së zgjedhur (currentLang)
         function showBusinesses(list) {
             const box = document.getElementById("results-box");
             box.innerHTML = "";
 
             if(list.length === 0) {
-                let noResultText = "No premium businesses found.";
-                if(currentLang === 'sq') noResultText = "Nuk u gjet asnjë biznes premium.";
-                if(currentLang === 'mk') noResultText = "Не се пронајдени премиум бизниси.";
-                
+                let noResultText = "No businesses found.";
+                if(currentLang === 'sq') noResultText = "Nuk u gjet asnjë biznes.";
+                if(currentLang === 'mk') noResultText = "Не се пронајдени бизниси.";
                 box.innerHTML = `<p class='no-results'>${noResultText}</p>`;
                 return;
             }
 
             list.forEach(biz => {
-                // Marrim fiks përkthimin që na duhet tani (en, sq apo mk)
-                const data = biz[currentLang]; 
+                // Nëse gjuha e zgjedhur nuk ekziston ende te ky biznes, përdor Anglisht (en) si standard fallback
+                const data = biz[currentLang] || biz['en']; 
 
                 box.innerHTML += `
                     <div class="business-card">
                         <div class="biz-name">${data.name}</div>
-                        <div class="biz-category">📍 ${data.location}</div>
-                        <div class="biz-info"><strong>${data.labelDesc}:</strong> ${data.desc}</div>
-                        <div class="biz-info"><strong>${data.labelPhone}:</strong> ${biz.phone}</div>
+                        <p class="biz-desc">${data.desc}</p>
+                        
+                        <!-- LOKACIONI MAJTAS | TELEFONI DJATHAS ANASH -->
+                        <div class="biz-footer">
+                            <span class="biz-loc">📍 ${data.location}</span>
+                            <span class="biz-phone">📞 ${biz.phone}</span>
+                        </div>
                     </div>
                 `;
             });
         }
 
-        // Ndryshimi i gjuhës nga menuja
         function changeLanguage() {
-            // Përditësojmë gjuhën globale
             currentLang = document.getElementById("language-picker").value;
-            
             const input = document.getElementById("search-input");
             const btn = document.getElementById("search-btn");
             
-            // Ndryshojmë tekstet e kërkimit sipas gjuhës
-            if(currentLang === "sq") {
+            if(currentLang === "sq" || currentLang === "sq_AL") {
                 input.placeholder = "Çfarë po kërkoni? (psh., mekanik, vilë, servis)...";
                 btn.innerText = "Kërko";
             } else if(currentLang === "mk") {
                 input.placeholder = "Што барате? (на пр. механичар, вила, сервис)...";
                 btn.innerText = "Пребарај";
+            } else if(currentLang === "sr") {
+                input.placeholder = "Šta tražite? (npr. mehaničar, vila, kafić)...";
+                btn.innerText = "Traži";
+            } else if(currentLang === "tr") {
+                input.placeholder = "Ne arıyorsunuz? (örn. tamirci, villa, otel)...";
+                btn.innerText = "Ara";
+            } else if(currentLang === "de") {
+                input.placeholder = "Was suchen Sie? (z.B. Mechaniker, Villa)...";
+                btn.innerText = "Suche";
             } else {
                 input.placeholder = "What are you looking for? (e.g., mechanic, villa, cafe)...";
                 btn.innerText = "Search";
             }
 
-            // RI-SHFAQIM BIZNESET DIREKT ME GJUHËN E RE!
             searchBusinesses(); 
         }
 
-        // Funksioni i kërkimit (punon në të gjitha gjuhët njëkohësisht)
         function searchBusinesses() {
             const query = document.getElementById("search-input").value.toLowerCase().trim();
             
@@ -368,10 +483,9 @@
             }
 
             const filtered = businesses.filter(biz => {
-                // Kërkon te emrat në anglisht, shqip, maqedonisht dhe tek fjalët kyçe (tags)
-                return biz.en.name.toLowerCase().includes(query) || 
-                       biz.sq.name.toLowerCase().includes(query) || 
-                       biz.mk.name.toLowerCase().includes(query) || 
+                return (biz.en && biz.en.name.toLowerCase().includes(query)) || 
+                       (biz.sq && biz.sq.name.toLowerCase().includes(query)) || 
+                       (biz.mk && biz.mk.name.toLowerCase().includes(query)) || 
                        biz.tags.includes(query);
             });
 
