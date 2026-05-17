@@ -1,4 +1,3 @@
-
 <html lang="sq">
 <head>
 <meta charset="UTF-8"/>
@@ -312,15 +311,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 2.5r
     <p class="sey" data-t="s_ey1">Shërbime & Biznese</p>
     <h2 class="sti"><em data-t="s_ti1_em">Gjej</em> <span data-t="s_ti1">çfarë të duhet</span></h2>
     <div class="sdiv"></div>
-
-    <!-- TOP 5 featured -->
-    <div class="cat-grid" id="catGrid"></div>
-
-    <!-- ALL categories -->
-    <div style="margin-top:3rem">
-      <p class="sey" data-t="s_all">Të gjitha kategoritë</p>
-      <div class="cat-full" id="catFull"></div>
-    </div>
+    <div class="cat-full" id="catFull"></div>
   </div>
 </section>
 
@@ -424,15 +415,6 @@ const CAT_NAMES = {
 function getCatName(key){return (CAT_NAMES[curLang]||CAT_NAMES.en)[key]||key}
 
 function buildCats(){
-  // Featured 5
-  document.getElementById('catGrid').innerHTML=CATS_FEATURED.map(c=>`
-    <a class="ct" href="javascript:void(0)" onclick="openM('${c.key}','${c.ico}')">
-      <span class="ct-ico">${c.ico}</span>
-      <span class="ct-name" id="fn-${c.key}">${getCatName(c.key)}</span>
-      <span class="ct-sub" data-t="cat_soon">Coming Soon</span>
-      <span class="ct-arrow">→</span>
-    </a>`).join('');
-  // All
   document.getElementById('catFull').innerHTML=CATS_ALL.map(c=>`
     <a class="ct" href="javascript:void(0)" onclick="openM('${c.key}','${c.ico}')">
       <span class="ct-ico">${c.ico}</span>
@@ -459,10 +441,10 @@ function setLang(l){
   // RTL for Arabic
   document.body.dir=l==='ar'?'rtl':'ltr';
   // Update cat names
-  [...CATS_FEATURED,...CATS_ALL].forEach(c=>{
-    const fn=document.getElementById('fn-'+c.key);const an=document.getElementById('an-'+c.key);
+  [...CATS_ALL].forEach(c=>{
+    const an=document.getElementById('an-'+c.key);
     const n=getCatName(c.key);
-    if(fn)fn.textContent=n;if(an)an.textContent=n;
+    if(an)an.textContent=n;
   });
 }
 document.addEventListener('click',e=>{if(langOpen&&!e.target.closest('.lang-sel')){langOpen=false;document.getElementById('langDrop').classList.remove('open');document.getElementById('langBtn').classList.remove('open')}});
