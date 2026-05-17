@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MkdMap - Ultra Luxury Directory</title>
+    <title>MkdMap - Ultra Luxury Multi-Language Directory</title>
     <style>
         /* --- 1. STILI PËR EKRANIN HYRËS (SPLASH SCREEN) --- */
         #splash-screen {
@@ -53,7 +53,7 @@
         }
 
         .container {
-            max-width: 1100px; /* E zgjeruar pak që të duket bukur në PC */
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
@@ -83,12 +83,9 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* --- SELEKTORI I GJUHËVE (LANGUAGE SELECTOR) --- */
+        /* --- SELEKTORI I GJUHËVE --- */
         .lang-container {
             margin-bottom: 40px;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-            animation-delay: 0.5s;
         }
 
         .lang-select {
@@ -110,7 +107,7 @@
         }
 
         .lang-select option {
-            background-color: #0f1a2c; /* Që lista të duket errët dhe luksoze */
+            background-color: #0f1a2c;
             color: #ffffff;
         }
 
@@ -166,10 +163,9 @@
             transform: scale(1.05);
         }
 
-        /* --- SAKTI E RESPONSIVE: REZULTATET --- */
+        /* --- REZULTATET --- */
         .results-container {
             display: grid;
-            /* PËR PC: Automatikisht krijon kolona në bazë të hapësirës */
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
             margin-top: 20px;
@@ -184,13 +180,12 @@
             padding: 25px;
             border-radius: 12px;
             text-align: left;
-            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, background 0.3s;
         }
 
         .business-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.07);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .biz-name {
@@ -219,14 +214,9 @@
             color: #94a3b8;
             font-style: italic;
             margin-top: 30px;
-            grid-column: 1 / -1; /* Merr krejt rreshtin në PC */
+            grid-column: 1 / -1;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* Ndrryshime të vogla për ekrane super të vogla (Celularë) */
         @media (max-width: 480px) {
             .main-title { font-size: 2rem; letter-spacing: 8px; }
             .search-box { padding: 4px 4px 4px 15px; }
@@ -241,42 +231,39 @@
         <div class="splash-text">Welcome to Macedonia</div>
     </div>
 
-    <!-- 2. FAQJA KRYESORE LUXURY & RESPONSIVE -->
+    <!-- 2. FAQJA KRYESORE -->
     <div id="main-content">
         <div class="container">
             <header>
                 <h1 class="main-title">mkdmap</h1>
             </header>
 
-            <!-- OPSIONI I ZGJEDHJES SË GJUHËS -->
+            <!-- SELEKTORI I GJUHËS -->
             <div class="lang-container">
                 <select class="lang-select" id="language-picker" onchange="changeLanguage()">
                     <option value="en">🌐 Language: English (EN)</option>
                     <option value="sq">🌐 Language: Shqip (SQ)</option>
                     <option value="mk">🌐 Language: Maqedonisht (MK)</option>
-                    <option value="tr">🌐 Language: Turqisht (TR)</option>
-                    <option value="de">🌐 Language: Gjermanisht (DE)</option>
-                    <option value="ru">🌐 Language: Rusisht (RU)</option>
-                    <option value="sr">🌐 Language: Serbisht (SR)</option>
-                    <option value="it">🌐 Language: Italisht (IT)</option>
-                    <option value="fr">🌐 Language: Frëngjisht (FR)</option>
                 </select>
             </div>
 
             <!-- KUTIA E KËRKIMIT -->
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel, cafe)...">
-                <button onclick="searchBusinesses()">Search</button>
+                <button id="search-btn" onclick="searchBusinesses()">Search</button>
             </div>
 
-            <!-- VENDI KU SHFAQEN REZULTATET -->
+            <!-- REZULTATET -->
             <div class="results-container" id="results-box">
-                <!-- Do të mbushen nga JS -->
+                <!-- Mbushen nga JS -->
             </div>
         </div>
     </div>
 
     <script>
+        // Ruajmë gjuhën aktuale (në fillim është Anglisht 'en')
+        let currentLang = 'en';
+
         window.addEventListener("DOMContentLoaded", function() {
             showBusinesses(businesses);
 
@@ -293,66 +280,102 @@
             }, 2000);
         });
 
-        // "DATABASE" I TESTIMIT
+        // FIKS ÇFARË KËRKUAT: Bizneset tani kanë përkthime për EN, SQ dhe MK
         const businesses = [
-            { name: "Luxury Villa Mavrovo", category: "villa hotel vilë vila", phone: "+389 70 123 456", location: "Mavrovo", description: "Exclusive villa with mountain view and private pool." },
-            { name: "Skopje Auto Mechanic Pro", category: "mechanik mekanik service auto", phone: "+389 71 999 888", location: "Skopje (Shkup)", description: "24/7 emergency car repair for tourists. English speaking." },
-            { name: "SmartFix Phone Service", category: "mjeshter telefoni service repair", phone: "+389 75 444 333", location: "Skopje", description: "Express screen and battery repair for all smartphones." },
-            { name: "Metropolitan Lounge & Cafe", category: "cafene kafiteri drink kafe", phone: "+389 72 555 555", location: "Skopje Center", description: "The finest coffee and premium cocktails in the heart of Shkup." },
-            { name: "Golden Fork Restaurant", category: "restorant restorante food", phone: "+389 78 777 666", location: "Ohrid", description: "Traditional Macedonian food and fresh lake fish with premium luxury service." },
-            { name: "Oasis Luxury Pool & Spa", category: "pishina pool spa", phone: "+389 70 888 888", location: "Kumanovo", description: "An elite swimming pool resort for summer relaxation." }
+            {
+                phone: "+389 70 123 456",
+                tags: "villa hotel vilë vila вила хотел",
+                en: { name: "Luxury Villa Mavrovo", location: "Mavrovo", desc: "Exclusive villa with mountain view and private pool.", labelDesc: "Description", labelPhone: "Phone" },
+                sq: { name: "Vila Luksoze Mavrovë", location: "Mavrovë", desc: "Vilë ekskluzive me pamje nga mali dhe pishinë private.", labelDesc: "Përshkrimi", labelPhone: "Telefoni" },
+                mk: { name: "Луксузна Вила Маврово", location: "Маврово", desc: "Ексклузивна вила со поглед на планина и приватен базен.", labelDesc: "Опис", labelPhone: "Телефон" }
+            },
+            {
+                phone: "+389 71 999 888",
+                tags: "mechanik mekanik service auto авто механичар",
+                en: { name: "Skopje Auto Mechanic Pro", location: "Skopje", desc: "24/7 emergency car repair for tourists. English speaking.", labelDesc: "Description", labelPhone: "Phone" },
+                sq: { name: "Mekanik Auto Pro Shkup", location: "Shkup", desc: "Riparim urgjent i makinave 24/7 për turistët. Flasim Shqip dhe Anglisht.", labelDesc: "Përshkrimi", labelPhone: "Telefoni" },
+                mk: { name: "Авто Механичар Про Скопје", location: "Скопје", desc: "24/7 итна поправка на автомобили за туристи. Зборуваме англиски.", labelDesc: "Опис", labelPhone: "Телефон" }
+            },
+            {
+                phone: "+389 75 444 333",
+                tags: "mjeshter telefoni service repair сервис мобилни",
+                en: { name: "SmartFix Phone Service", location: "Skopje", desc: "Express screen and battery repair for all smartphones.", labelDesc: "Description", labelPhone: "Phone" },
+                sq: { name: "Servis Telefonash SmartFix", location: "Shkup", desc: "Riparim i shpejtë i ekranit dhe baterisë për të gjithë smartfonët.", labelDesc: "Përshkrimi", labelPhone: "Telefoni" },
+                mk: { name: "Сервис за Мобилни SmartFix", location: "Скопје", desc: "Експресна поправка на екрани и батерии за сите смартфони.", labelDesc: "Опис", labelPhone: "Телефон" }
+            }
         ];
 
+        // Funksioni që shfaq bizneset në bazë të gjuhës së zgjedhur (currentLang)
         function showBusinesses(list) {
             const box = document.getElementById("results-box");
             box.innerHTML = "";
+
             if(list.length === 0) {
-                box.innerHTML = "<p class='no-results'>No premium businesses found matching your request. Try searching 'mechanic' or 'hotel'.</p>";
+                let noResultText = "No premium businesses found.";
+                if(currentLang === 'sq') noResultText = "Nuk u gjet asnjë biznes premium.";
+                if(currentLang === 'mk') noResultText = "Не се пронајдени премиум бизниси.";
+                
+                box.innerHTML = `<p class='no-results'>${noResultText}</p>`;
                 return;
             }
+
             list.forEach(biz => {
+                // Marrim fiks përkthimin që na duhet tani (en, sq apo mk)
+                const data = biz[currentLang]; 
+
                 box.innerHTML += `
                     <div class="business-card">
-                        <div class="biz-name">${biz.name}</div>
-                        <div class="biz-category">📍 ${biz.location}</div>
-                        <div class="biz-info"><strong>Description:</strong> ${biz.description}</div>
-                        <div class="biz-info"><strong>Phone:</strong> ${biz.phone}</div>
+                        <div class="biz-name">${data.name}</div>
+                        <div class="biz-category">📍 ${data.location}</div>
+                        <div class="biz-info"><strong>${data.labelDesc}:</strong> ${data.desc}</div>
+                        <div class="biz-info"><strong>${data.labelPhone}:</strong> ${biz.phone}</div>
                     </div>
                 `;
             });
         }
 
+        // Ndryshimi i gjuhës nga menuja
+        function changeLanguage() {
+            // Përditësojmë gjuhën globale
+            currentLang = document.getElementById("language-picker").value;
+            
+            const input = document.getElementById("search-input");
+            const btn = document.getElementById("search-btn");
+            
+            // Ndryshojmë tekstet e kërkimit sipas gjuhës
+            if(currentLang === "sq") {
+                input.placeholder = "Çfarë po kërkoni? (psh., mekanik, vilë, servis)...";
+                btn.innerText = "Kërko";
+            } else if(currentLang === "mk") {
+                input.placeholder = "Што барате? (на пр. механичар, вила, сервис)...";
+                btn.innerText = "Пребарај";
+            } else {
+                input.placeholder = "What are you looking for? (e.g., mechanic, villa, cafe)...";
+                btn.innerText = "Search";
+            }
+
+            // RI-SHFAQIM BIZNESET DIREKT ME GJUHËN E RE!
+            searchBusinesses(); 
+        }
+
+        // Funksioni i kërkimit (punon në të gjitha gjuhët njëkohësisht)
         function searchBusinesses() {
             const query = document.getElementById("search-input").value.toLowerCase().trim();
+            
             if(query === "") {
                 showBusinesses(businesses);
                 return;
             }
-            const filtered = businesses.filter(biz => {
-                return biz.name.toLowerCase().includes(query) || 
-                       biz.category.toLowerCase().includes(query) || 
-                       biz.location.toLowerCase().includes(query) ||
-                       biz.description.toLowerCase().includes(query);
-            });
-            showBusinesses(filtered);
-        }
 
-        // Funksioni që do të thërrasim kur turisti ndryshon gjuhën (Për momentin një njoftim model)
-        function changeLanguage() {
-            const selectedLang = document.getElementById("language-picker").value;
-            
-            // Këtu në të ardhmen do të përkthejmë tekstet, për momentin thjesht ndryshojmë placeholder-in si provë
-            const input = document.getElementById("search-input");
-            
-            if(selectedLang === "sq") {
-                input.placeholder = "Çfarë po kërkoni? (psh., mekanik, hotel, kafe)...";
-            } else if(selectedLang === "mk") {
-                input.placeholder = "Што барате? (на пр. механичар, хотел, кафе)...";
-            } else if(selectedLang === "ru") {
-                input.placeholder = "Что вы ищете? (например, механик, отель, кафе)...";
-            } else {
-                input.placeholder = "What are you looking for? (e.g., mechanic, hotel, cafe)...";
-            }
+            const filtered = businesses.filter(biz => {
+                // Kërkon te emrat në anglisht, shqip, maqedonisht dhe tek fjalët kyçe (tags)
+                return biz.en.name.toLowerCase().includes(query) || 
+                       biz.sq.name.toLowerCase().includes(query) || 
+                       biz.mk.name.toLowerCase().includes(query) || 
+                       biz.tags.includes(query);
+            });
+
+            showBusinesses(filtered);
         }
 
         document.getElementById("search-input").addEventListener("keypress", function(event) {
