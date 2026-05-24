@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="sq">
 <head>
 <meta charset="UTF-8"/>
@@ -806,7 +805,12 @@ footer{position:relative;z-index:1;background:rgba(2,3,10,.95);border-top:1px so
   const oc = document.createElement('canvas');
   oc.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1';
   oc.width=W;oc.height=H;
-  document.body.insertBefore(oc,document.getElementById('bg3d').nextSibling);
+  const bg3d = document.getElementById('bg3d');
+  if(bg3d && bg3d.parentNode === document.body && bg3d.nextSibling){
+    document.body.insertBefore(oc, bg3d.nextSibling);
+  } else {
+    document.body.appendChild(oc);
+  }
   const ctx=oc.getContext('2d');
 
   function drawGrid(ts){
