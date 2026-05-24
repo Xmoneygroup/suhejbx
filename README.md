@@ -12,7 +12,8 @@
   --t1:#F2EED8;--t2:rgba(242,238,216,0.55);--t3:rgba(242,238,216,0.25);--t4:rgba(242,238,216,0.1);
   --b1:rgba(255,255,255,0.07);--b2:rgba(255,255,255,0.03);
 }
-html{scroll-behavior:smooth;cursor:none}
+html{scroll-behavior:smooth}
+@media(pointer:fine){html{cursor:none}}
 body{background:var(--ink);color:var(--t1);font-family:'Space Grotesk',sans-serif;font-weight:300;overflow-x:hidden}
 
 /* ── CURSOR ── */
@@ -20,6 +21,7 @@ body{background:var(--ink);color:var(--t1);font-family:'Space Grotesk',sans-seri
 #cur2{position:fixed;width:28px;height:28px;border:1px solid rgba(201,168,76,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
 body.hov #cur{transform:translate(-50%,-50%) scale(2.5)}
 body.hov #cur2{width:46px;height:46px;border-color:rgba(201,168,76,.8)}
+@media(pointer:coarse){#cur,#cur2{display:none}}
 
 /* ── LIVE 3D BACKGROUND (always on) ── */
 #bg3d{position:fixed;inset:0;z-index:0;pointer-events:none}
@@ -194,7 +196,8 @@ nav{
   text-align:center;
 }
 .hero-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s 1.8s both}
-.bp{background:linear-gradient(135deg,var(--g) 0%,var(--g2) 50%,var(--g) 100%);background-size:200%;color:var(--ink);border:none;padding:14px 38px;font-family:'Space Grotesk',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:none;transition:all .3s}
+.bp{background:linear-gradient(135deg,var(--g) 0%,var(--g2) 50%,var(--g) 100%);background-size:200%;color:var(--ink);border:none;padding:14px 38px;font-family:'Space Grotesk',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all .3s}
+@media(pointer:fine){.bp{cursor:none}}
 .bp:hover{background-position:100%;transform:translateY(-2px);box-shadow:0 14px 35px rgba(201,168,76,.3)}
 .bg{background:transparent;color:var(--t2);border:1px solid var(--b1);padding:14px 38px;font-family:'Space Grotesk',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;cursor:none;transition:all .25s}
 .bg:hover{border-color:var(--gb);color:var(--g)}
@@ -364,10 +367,127 @@ footer{position:relative;z-index:1;background:rgba(2,3,10,.95);border-top:1px so
 .mec{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--b1);font-size:.7rem;color:var(--t3);display:flex;align-items:center;gap:8px;justify-content:center}
 .mec a{color:var(--g);text-decoration:none}
 
-/* RESPONSIVE */
-@media(max-width:1024px){.cgrid{grid-template-columns:repeat(4,1fr)}.ftop{grid-template-columns:1fr 1fr;gap:2.5rem}}
-@media(max-width:768px){nav{padding:0 1.25rem}.nav-r .na{display:none}.cgrid{grid-template-columns:repeat(3,1fr)}.wgrid,.hgrid,.cogrid{grid-template-columns:1fr}.sec{padding:4rem 1.25rem}.crow{flex-wrap:wrap}.cc{flex:calc(33% - 1px)}.ftop{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.cgrid{grid-template-columns:repeat(2,1fr)}.cc{flex:calc(50% - 1px)}.logo-main{font-size:3rem}.statsbar{flex-wrap:wrap}.si{min-width:50%;padding:1.5rem}.ftop{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:center}}
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  .cgrid{grid-template-columns:repeat(4,1fr)}
+  .ftop{grid-template-columns:1fr 1fr;gap:2.5rem}
+}
+
+@media(max-width:768px){
+  nav{padding:0 1rem}
+  .nav-r .na{display:none}
+  .logo-nav{font-size:1.1rem}
+
+  .hero{padding:7rem 1.25rem 4rem;min-height:auto}
+  .logo-main{font-size:clamp(2.8rem,14vw,5rem) !important}
+  .logo-tagline{font-size:.85rem}
+  .hero-desc{font-size:.82rem;max-width:100%}
+  .hero-btns{flex-direction:column;align-items:center;width:100%}
+  .hero-btns .bp,.hero-btns .bg{width:100%;max-width:320px;text-align:center}
+
+  .statsbar{flex-wrap:wrap;padding:1.5rem 1rem}
+  .si{min-width:50%;padding:1.25rem .75rem}
+  .sn{font-size:2.2rem}
+
+  .sec{padding:3.5rem 1.25rem}
+  .wgrid{grid-template-columns:1fr}
+  .wc{padding:2rem 1.5rem}
+  .wn{font-size:3rem}
+
+  .cgrid{grid-template-columns:repeat(3,1fr)}
+  .ct{padding:1.25rem .75rem 1rem}
+  .cti{font-size:1.4rem}
+  .ctn{font-size:.62rem}
+
+  .hgrid{grid-template-columns:1fr}
+  .hc{padding:2rem 1.5rem}
+
+  .promo{padding:3.5rem 1.25rem}
+  .pq{font-size:1.1rem;padding:0 .5rem}
+
+  .cosec{padding:4rem 1.25rem}
+  .cogrid{grid-template-columns:1fr;gap:2.5rem}
+
+  .wa-btn{padding:14px 28px;font-size:1.1rem;width:100%;max-width:340px;justify-content:center}
+
+  footer{padding:3.5rem 1.25rem 2rem}
+  .ftop{grid-template-columns:1fr 1fr;gap:2rem}
+  .fbot{flex-direction:column;align-items:center;text-align:center;gap:.5rem}
+
+  .sh{font-size:clamp(1.5rem,5vw,2.2rem)}
+  .mbox{max-width:95vw}
+  .mb{padding:1.25rem}
+  .mh{padding:1.25rem 1.25rem}
+}
+
+@media(max-width:480px){
+  nav{padding:0 .9rem}
+  .logo-nav{font-size:1rem;letter-spacing:.1em}
+  .lb{padding:5px 10px;font-size:.55rem}
+
+  .logo-main{font-size:clamp(2.4rem,13vw,3.5rem) !important}
+  .logo-tagline{font-size:.75rem;letter-spacing:.06em}
+  .hero-eyebrow{font-size:.5rem;letter-spacing:.15em}
+  .hero-desc{font-size:.78rem}
+
+  .statsbar{padding:1rem .5rem}
+  .si{min-width:50%;padding:1rem .5rem}
+  .sn{font-size:1.9rem}
+  .sl{font-size:.48rem}
+
+  .sec{padding:2.5rem 1rem}
+  .sey{font-size:.5rem;letter-spacing:.18em}
+  .sh{font-size:clamp(1.4rem,7vw,2rem)}
+  .sr{margin-bottom:2rem}
+
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .ct{padding:1.1rem .6rem .9rem}
+  .cti{font-size:1.3rem;margin-bottom:.5rem}
+  .ctn{font-size:.6rem}
+  .cts{font-size:.45rem}
+  .csrch input{font-size:.78rem;padding:.75rem 1rem}
+
+  .wc{padding:1.75rem 1.25rem}
+  .wt{font-size:.9rem}
+  .wd{font-size:.74rem}
+
+  .hc{padding:1.75rem 1.25rem}
+  .ht{font-size:.9rem}
+  .hd{font-size:.74rem}
+  .hn{font-size:3rem}
+
+  .pq{font-size:1rem}
+  .pn{font-size:.58rem}
+
+  .cosec{padding:3rem .9rem}
+  .cod{font-size:.78rem}
+  .cf input,.cf textarea{font-size:.8rem;padding:11px 13px}
+  .cfb{font-size:.65rem}
+  .cfn{font-size:.54rem}
+  .cor{font-size:.74rem}
+  .coic{width:28px;height:28px;font-size:.8rem}
+
+  .wa-btn{padding:13px 20px;font-size:1rem}
+  .wa-btn svg{width:22px;height:22px}
+  .wa-sub{font-size:.58rem}
+
+  footer{padding:2.5rem .9rem 1.5rem}
+  .ftop{grid-template-columns:1fr;gap:1.5rem}
+  .flogo{font-size:1.3rem}
+  .fdesc{font-size:.68rem}
+  .fct{font-size:.5rem}
+  .fcol a{font-size:.68rem}
+  .fbot{font-size:.54rem}
+
+  .mbox{max-width:98vw}
+  .mh{padding:1rem}
+  .mtit{font-size:1.2rem}
+  .mb{padding:1rem}
+  .meico{font-size:2.2rem}
+  .met{font-size:1rem}
+  .med{font-size:.7rem}
+  .mebadge{font-size:.54rem;padding:6px 14px}
+}
 </style>
 </head>
 <body>
@@ -469,23 +589,7 @@ footer{position:relative;z-index:1;background:rgba(2,3,10,.95);border-top:1px so
   </div>
 </section>
 
-<!-- CITIES -->
-<section class="citsec">
-  <div class="si2">
-    <p class="sey" data-t="cie">Qytetet tona</p>
-    <h2 class="sh" style="margin-bottom:0"><span data-t="cih1">Mbulojmë</span> <em data-t="cih2">të gjithë vendin</em></h2>
-    <div class="crow">
-      <div class="cc"><div class="ccn">Shkup</div><div class="ccr">Kryeqyteti</div></div>
-      <div class="cc"><div class="ccn">Ohër</div><div class="ccr">Liqeni i Ohrit</div></div>
-      <div class="cc"><div class="ccn">Bitola</div><div class="ccr">Shirok Sokak</div></div>
-      <div class="cc"><div class="ccn">Tetovë</div><div class="ccr">Mali Sharr</div></div>
-      <div class="cc"><div class="ccn">Kumanovë</div><div class="ccr">Verilindor</div></div>
-      <div class="cc"><div class="ccn">Shtip</div><div class="ccr">Bregalnica</div></div>
-      <div class="cc"><div class="ccn">Struga</div><div class="ccr">Liqeni i Ohrit</div></div>
-      <div class="cc"><div class="ccn">Veles</div><div class="ccr">Vardar</div></div>
-    </div>
-  </div>
-</section>
+
 
 <!-- CONTACT -->
 <section class="cosec" id="contact">
